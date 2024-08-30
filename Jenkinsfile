@@ -6,6 +6,10 @@ pipeline {
         APP_NAME = "e2e-cicd-pipline"
     }
 
+    tools {
+        git 'default' // Specify the Git tool to use
+    }
+
     stages {
         stage ("Cleanup workspace") {
             steps {
@@ -38,7 +42,8 @@ pipeline {
                     git add deployment.yaml
                     git commit -m "Updated Deployment Menifest"
                 """
-                withCredentials([usernamePassword{credentialsId: 'github', gitToolName: 'default'}]) {
+                //withCredentials([usernamePassword{credentialsId: 'github', gitToolName: 'default'}]) 
+                withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]){
                     sh "git push https://github.com/fahadriaz1206/gitops-complete-prodcution-e2e-pipeline.git main"
                 }
             }
