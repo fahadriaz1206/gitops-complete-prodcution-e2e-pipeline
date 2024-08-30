@@ -7,7 +7,7 @@ pipeline {
     }
 
     tools {
-        git 'default' // Specify the Git tool to use
+        git 'Default' // Specify the Git tool to use
     }
 
     stages {
