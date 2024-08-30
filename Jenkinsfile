@@ -38,7 +38,7 @@ pipeline {
                     git add deployment.yaml
                     git commit -m "Updated Deployment Menifest"
                 """
-                withCredentials([gitUsernamePassword{credentialsId: 'github', gitToolName: 'default'}]) {
+                withCredentials([usernamePassword{credentialsId: 'github', gitToolName: 'default'}]) {
                     sh "git push https://github.com/fahadriaz1206/gitops-complete-prodcution-e2e-pipeline.git main"
                 }
             }
